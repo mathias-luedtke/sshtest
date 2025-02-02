@@ -16,3 +16,13 @@ jobs:
         repository: mathias-luedtke/testpriv
         path: testpriv
     - run: cat testpriv/README.md
+
+  test_no_checkout:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: mathias-luedtke/testpriv
+        path: testpriv
+      continue-on-error: true
+    - run: test ! -e testpriv/README.md
