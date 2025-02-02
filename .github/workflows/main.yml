@@ -36,3 +36,15 @@ jobs:
         env:
           ROS_DISTRO: "humble"
           TARGET_WORKSPACE: "git+ssh://git@github.com/mathias-luedtke/testpriv.git#main"
+
+  test_webfactory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+            ssh-private-key: ${{ secrets.private_key }}
+      - run: sed 's|/home/runner|/root|g' -i.bak ~/.ssh/config
+      - uses: 'mathias-luedtke/industrial_ci@feature/github-ssh-key'
+        env:
+          ROS_DISTRO: "humble"
+          TARGET_WORKSPACE: "git+ssh://git@github.com/mathias-luedtke/testpriv.git#main"
