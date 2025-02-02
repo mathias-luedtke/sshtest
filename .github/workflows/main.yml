@@ -26,3 +26,13 @@ jobs:
         path: testpriv
       continue-on-error: true
     - run: test ! -e testpriv/README.md
+
+  test_ici:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 'mathias-luedtke/industrial_ci@feature/github-ssh-key'
+        with:
+          ssh-key: ${{ secrets.private_key }}
+        env:
+          ROS_DISTRO: "humble"
+          TARGET_WORKSPACE: "git+ssh://git@github.com/mathias-luedtke/testpriv.git#main"
