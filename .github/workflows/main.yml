@@ -13,5 +13,6 @@ jobs:
     - uses: actions/checkout@v4
       with:
         ssh-key: ${{ secrets.private_key }}
-        repository: ros-industrial/industrial_ci
-        path: industrial_ci
+        repository: mathias-luedtke/testpriv
+        path: testpriv
+    - run: cat testpriv/README.md
